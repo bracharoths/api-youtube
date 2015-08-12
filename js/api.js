@@ -17,37 +17,19 @@ function getRequest(search){
   url = 'https://www.googleapis.com/youtube/v3/search';
 
   $.getJSON(url, params, function(data){
-    // showResults(data.Search);
-    console.log(data)
+  	console.log(data)
+    showResults(data.items);
   });
 }
 
-// function showResults(results){
-//   var str = JSON.stringify(response.result)
-//   $.each(results, function(index,value){
-//     html += '<p>' + value.Title + '</p>';
-//     console.log(value.Title);
-//   });
-//   $('#search-results').html(html);
-// }
+function showResults(results) {
+	var html = "";
+  $('#query').val();
+  $.each(results, function(index, result) {
+	html += '<a href="https://www.youtube.com/watch?v=' + result.id.videoId +'"><img src="' + result.snippet.thumbnails.medium.url +'"></a>';
+  });
+  $('#search-results').html(html);
+}
 
-// $(function(){
-// console.log('ready');
-//   $.getJSON('https://www.googleapis.com/youtube/v3/search', {
-//   	key: 'AIzaSyChbz3MFtKY3RooOSLAZrqXnjppHlHEWTo',
-//   	part: 'snippet',
-//   	type: 'video'
-//   }, 
-//   function(data){
-
-//   	console.log(data)
-//   });
-
-//   $.getJSON('https://www.googleapis.com/youtube/v3/search?key=AIzaSyChbz3MFtKY3RooOSLAZrqXnjppHlHEWTo&part=snippet&type=video', function(data){
-//     // myData = data.Search;
-//     // $.each(myData, function(index,value){
-//     // console.log(value.Title);
-//     // });
-//   console.log(data);
-//   });
-// });
+ 
+ 
